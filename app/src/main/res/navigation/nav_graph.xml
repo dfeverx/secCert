@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainCheckFrag">
+
+    <fragment
+        android:id="@+id/mainCheckFrag"
+        android:name="com.dfeverx.dcert.MainCheckFrag"
+        android:label="delete"
+        tools:layout="@layout/delete" >
+        <action
+            android:id="@+id/action_mainCheckFrag_to_authFrag"
+            app:destination="@id/authFrag" />
+        <action
+            android:id="@+id/action_mainCheckFrag_to_dashboardFrag"
+            app:destination="@id/dashboard" />
+    </fragment>
+    <fragment
+        android:id="@+id/authFrag"
+        android:name="com.dfeverx.dcert.AuthFrag"
+        android:label="fragment_auth"
+        tools:layout="@layout/fragment_auth" >
+        <action
+            android:id="@+id/action_authFrag_to_navigation"
+            app:destination="@id/dashboard" />
+    </fragment>
+    <navigation
+        android:id="@+id/dashboard"
+        android:label="Dashbaord"
+        app:startDestination="@id/dashboardFrag">
+        <fragment
+            android:id="@+id/dashboardFrag"
+            android:name="com.dfeverx.dcert.DashboardFrag"
+            android:label="fragment_dashboard"
+            tools:layout="@layout/fragment_dashboard" >
+            <action
+                android:id="@+id/action_dashboardFrag_to_permissionsFragment"
+                app:destination="@id/permissionsFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/permissionsFragment"
+            android:name="com.dfeverx.dcert.ui.camerax.PermissionsFragment"
+            android:label="PermissionsFragment" >
+            <action
+                android:id="@+id/action_permissionsFragment_to_cameraxFrag"
+                app:destination="@id/cameraxFrag"
+                app:popUpTo="@id/dashboardFrag"
+                app:popUpToInclusive="true" />
+        </fragment>
+        <fragment
+            android:id="@+id/cameraxFrag"
+            android:name="com.dfeverx.dcert.CameraxFrag"
+            android:label="fragment_camerax"
+            tools:layout="@layout/fragment_camerax" >
+            <action
+                android:id="@+id/action_cameraxFrag_to_scanFragment"
+                app:destination="@id/cropFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/cropFragment"
+            android:name="com.dfeverx.dcert.ui.crop.CropFragment"
+            android:label="ScanFragment" >
+            <argument
+                android:name="uri_string"
+                app:argType="string" />
+        </fragment>
+        <fragment
+            android:id="@+id/editFrag"
+            android:name="com.dfeverx.dcert.EditFrag"
+            android:label="fragment_edit"
+            tools:layout="@layout/fragment_edit" >
+            <argument
+                android:name="uri"
+                app:argType="string" />
+            <action
+                android:id="@+id/action_editFrag_to_storagePermissionsFragment"
+                app:destination="@id/storagePermissionsFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/storagePermissionsFragment"
+            android:name="com.dfeverx.dcert.ui.camerax.StoragePermissionsFragment"
+            android:label="StoragePermissionsFragment" />
+        <fragment
+            android:id="@+id/pdfViewer"
+            android:name="com.dfeverx.dcert.PdfViewerFrag"
+            android:label="fragment_pdf_viewer"
+            tools:layout="@layout/fragment_pdf_viewer" />
+    </navigation>
+</navigation>
